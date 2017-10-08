@@ -193,5 +193,9 @@ public class Pathfinder {
         return false;
     }
 
-
+    /**
+     * Prüft alle Richtungen, wenn Richtung möglich, dann in diese Richtungen gehen und Weg merken.
+     * Vom neuen Punkt aus wieder alle Richtungen prüfen (rekursiv).
+     * Wenn Richtung/Punkt auf dem Ende liegt, dann gelaufenen Weg merken.
+     */
 }
