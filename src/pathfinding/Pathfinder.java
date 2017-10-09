@@ -39,7 +39,7 @@ public class Pathfinder {
         }
         System.out.println(allPaths.size());
         for( ArrayList<Way> path : allPaths){
-            System.out.print(path);
+            System.out.println(path);
         }
 
         /*
@@ -113,16 +113,17 @@ public class Pathfinder {
 
     private void goTo(Point currentPoint, Way direction, ArrayList<Way> path){
 
-        currentPoint = goDirection(currentPoint, direction);
+        Point newPoint = goDirection(currentPoint, direction);
         path.add(direction);
 
-        if(currentPoint.getX() == end.getX() && currentPoint.getY() == end.getY()){
+        if(newPoint.getX() == end.getX() && newPoint.getY() == end.getY()){
             allPaths.add(path);
-        }else if(currentPoint.getX() <= end.getX() && currentPoint.getY() <= end.getX()){
-            ArrayList<Way> possibleDirections = getAllpossibleDirections(currentPoint, direction);
+            System.out.println(allPaths.size());
+        }else if(newPoint.getX() <= end.getX()){
+            ArrayList<Way> possibleDirections = getAllpossibleDirections(newPoint, direction);
             for(Way dir : possibleDirections){
                 ArrayList<Way> clone = (ArrayList<Way>) path.clone();
-                goTo(currentPoint, dir, clone);
+                goTo(newPoint, dir, clone);
             }
             path = null;
         }
@@ -130,35 +131,34 @@ public class Pathfinder {
     }
 
     private Point goDirection(Point current, Way direction){
-
+        int y = current.y;
+        int x = current.x;
         switch (direction){
             case TOP:
-                current.y = current.y +1;
+                y = y +1;
 //                System.out.println("TOP");
                 break;
             case RIGHT:
-                current.x = current.x +1;
+                x = x +1;
 //                System.out.println("RIGHT");
                 break;
             case BOTTOMRIGHT:
-                current.x = current.x +1;
-                current.y = current.y -1;
+                x = x +1;
+                y = y -1;
 //                System.out.println("BOTTOMRIGHT");
                 break;
             case TOPLEFT:
-                current.x = current.x -1;
-                current.y = current.y +1;
+                x = x -1;
+                y = y +1;
                 break;
             case TOPRIGHT:
-                current.x = current.x +1;
-                current.y = current.y +1;
+                x = x +1;
+                y = y +1;
                 break;
         }
-        return current;
+        return new Point(x,y);
 
     }
-
-
 
     public ArrayList<Way> getAllpossibleDirections(Point p, Way direction){
 
