@@ -10,7 +10,7 @@ import java.awt.*;
 public class Main {
     public static void main(String[] args) {
 
-        int n = 4;
+        int n = 3;
         Point start = new Point(0,0);
         Point end = new Point (n,0);
 
