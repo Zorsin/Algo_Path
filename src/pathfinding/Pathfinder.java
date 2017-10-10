@@ -12,10 +12,15 @@ import java.util.ArrayList;
  * @author SWirries
  */
 public class Pathfinder {
-    Point start;
-    Point end;
-    ArrayList<ArrayList<Way>> allPaths = new ArrayList<>();
-    ArrayList<Way> path = new ArrayList<>();
+    private Point start;
+    private Point end;
+    private ArrayList<ArrayList<Way>> allPaths = new ArrayList<>();
+
+    public ArrayList<ArrayList<Way>> getAllPaths() {
+        return allPaths;
+    }
+
+    private ArrayList<Way> path = new ArrayList<>();
     int trys = 10;
 
     public Pathfinder(Point start, Point end) {
@@ -30,17 +35,15 @@ public class Pathfinder {
         new
          */
 
-        System.out.println("find path");
-
         Point current = start;
         ArrayList<Way> possibleDirections = getAllpossibleDirections(current, Way.LEFT);
         for(Way direction : possibleDirections){
             goTo(current, direction, new ArrayList<Way>());
         }
         System.out.println(allPaths.size());
-        for( ArrayList<Way> path : allPaths){
-            System.out.println(path);
-        }
+//        for( ArrayList<Way> path : allPaths){
+//            System.out.println(path);
+//        }
 
         /*
         new end
@@ -118,7 +121,7 @@ public class Pathfinder {
 
         if(newPoint.getX() == end.getX() && newPoint.getY() == end.getY()){
             allPaths.add(path);
-            System.out.println(allPaths.size());
+//            System.out.println(allPaths.size());
         }else if(newPoint.getX() <= end.getX()){
             ArrayList<Way> possibleDirections = getAllpossibleDirections(newPoint, direction);
             for(Way dir : possibleDirections){
