@@ -48,7 +48,7 @@ public class PatternAvoiding {
             while (binary.length()<patterns[0].length()-1){
                 binary = "0"+binary;
             }
-            beginRun.put(binary,new BigInteger("1"));
+            beginRun.put(binary,new BigInteger(i<Math.pow(2,n)?"1":"0"));
             endRun.put(binary,new BigInteger("0"));
             emptyRun.put(binary,new BigInteger("0"));
         }
