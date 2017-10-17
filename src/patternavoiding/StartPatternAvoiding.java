@@ -25,8 +25,11 @@ public class StartPatternAvoiding {
  * 1111X
  */
     public static void main(String[] args) {
-        PatternAvoiding patternAvoiding = new PatternAvoiding(50);
-        patternAvoiding.generateString();
+        PatternAvoiding patternAvoiding = new PatternAvoiding(1000);
+//        patternAvoiding.generateString();
+        patternAvoiding.buildPattern(new String[]{"1111","1000","1011","1101"});
+//        String bin = "1010";
+//        System.out.println(bin.substring(0,bin.length()-1));
     }
 
 }
