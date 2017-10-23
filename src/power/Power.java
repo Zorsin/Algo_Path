@@ -12,8 +12,8 @@ public class Power {
         double x = 2;
         long n = 1000;
 
-        System.out.println(power(x,n));
-        System.out.println(count);
+        System.out.println("x=" + x + ", n=" + n + ", x^n=" + power(x,n));
+        System.out.println("Rechenoperationen: " + count);
 
     }
 
