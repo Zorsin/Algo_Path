@@ -6,6 +6,7 @@ package pathfinding;
  * @author SWirries
  */
 public enum Way {
+
     TOP,
     TOPRIGHT,
     RIGHT,
