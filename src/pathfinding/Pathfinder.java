@@ -114,7 +114,7 @@ public class Pathfinder {
 
     }
 
-    private void goTo(Point currentPoint, Way direction, ArrayList<Way> path){
+    protected void goTo(Point currentPoint, Way direction, ArrayList<Way> path){
 
         Point newPoint = goDirection(currentPoint, direction);
         path.add(direction);
@@ -133,7 +133,7 @@ public class Pathfinder {
 
     }
 
-    private Point goDirection(Point current, Way direction){
+    protected Point goDirection(Point current, Way direction){
         int y = current.y;
         int x = current.x;
         switch (direction){
@@ -163,7 +163,7 @@ public class Pathfinder {
 
     }
 
-    public ArrayList<Way> getAllpossibleDirections(Point p, Way direction){
+    protected ArrayList<Way> getAllpossibleDirections(Point p, Way direction){
 
         ArrayList<Way> out = new ArrayList<>();
 
@@ -209,7 +209,7 @@ public class Pathfinder {
 //        return possible;
 //    }
 
-    private boolean checkWay(Point current, Way way){
+    protected boolean checkWay(Point current, Way way){
         boolean possible = false;
         switch (way){
             case TOP:
@@ -241,7 +241,7 @@ public class Pathfinder {
         return possible;
     }
 
-    private boolean checkTopWay(Point current){
+    protected boolean checkTopWay(Point current){
         boolean possible = false;
         //Nach oben
         Point top = new Point(current.x,current.y+1);
@@ -258,7 +258,7 @@ public class Pathfinder {
         return possible;
     }
 
-    private boolean checkTopRightWay(Point current){
+    protected boolean checkTopRightWay(Point current){
         boolean possible = false;
         //Nach oben rechts
         Point top = new Point(current.x+1,current.y+1);
@@ -278,7 +278,7 @@ public class Pathfinder {
         return possible;
     }
 
-    private boolean checkRightWay(Point current){
+    protected boolean checkRightWay(Point current){
         boolean possible = false;
         //Nach oben rechts
         Point top = new Point(current.x+1,current.y);
@@ -295,7 +295,7 @@ public class Pathfinder {
         return possible;
     }
 
-    private boolean checkBottomRightWay(Point current){
+    protected boolean checkBottomRightWay(Point current){
         boolean possible = false;
         //Nach oben rechts
         Point top = new Point(current.x+1,current.y-1);
@@ -306,7 +306,7 @@ public class Pathfinder {
         return possible;
     }
 
-    private boolean checkTopLeftWay(Point current){
+    protected boolean checkTopLeftWay(Point current){
         boolean possible = false;
         //Nach oben rechts
         Point top = new Point(current.x-1,current.y+1);
@@ -319,11 +319,11 @@ public class Pathfinder {
         return possible;
     }
 
-    private boolean checkBottomWay(Point current){
+    protected boolean checkBottomWay(Point current){
         return false;
     }
 
-    private boolean checkMeet(Point next){
+    protected boolean checkMeet(Point next){
         if(next.x == end.x && next.y == end.y)
             return true;
 
