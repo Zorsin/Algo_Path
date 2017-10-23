@@ -24,7 +24,7 @@ public class Main extends Application {
 
     public static void main(String[] args) {
 
-        n = 4;
+        n = 7;
         Point start = new Point(0,0);
         Point end = new Point (n,0);
 
@@ -47,7 +47,7 @@ public class Main extends Application {
         canvas = canvasPane.getCanvas();
         c = canvas.getGraphicsContext2D();
         BorderPane root = new BorderPane(canvasPane);
-        scene = new Scene(root, 1600, 1000);
+        scene = new Scene(root, 1920, 1080);
         primaryStage.setScene(scene);
 
         primaryStage.show();
@@ -59,7 +59,7 @@ public class Main extends Application {
 
         double startX = 20;
         double startY = 20;
-        double arrowLength = 10;
+        double arrowLength = 4;
         int drawsPerLine = (int) (canvas.getWidth()/((n)*arrowLength+arrowLength))-2;
         int currentIndex = 1;
         System.out.println("drawsPerLine: " + drawsPerLine);
