@@ -10,6 +10,9 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 import java.awt.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 /**
@@ -24,12 +27,27 @@ public class Main extends Application {
 
     public static void main(String[] args) {
 
-        n = 5;
-        Point start = new Point(0,0);
-        Point end = new Point (n,0);
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        System.out.print("Bitte geben sie ein gewünschtes n ein: ");
+        String input = "";
+        try {
+            input = br.readLine();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        System.out.println("n=" + input);
+        try {
+            n = Integer.parseInt(input);
+            Point start = new Point(0,0);
+            Point end = new Point (n,0);
 
-        pathfinder = new Pathfinder(start,end);
-        pathfinder.findPath();
+            pathfinder = new Pathfinder(start,end);
+            pathfinder.findPath();
+        } catch (Exception e) {
+//            e.printStackTrace();
+            System.out.println("dieses n ist keine Zahl.");
+        }
+
 
         Application.launch();
     }

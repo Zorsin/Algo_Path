@@ -43,81 +43,11 @@ public class Pathfinder {
             goTo(current, direction, new ArrayList<Way>());
         }
 
-        System.out.println(allPaths.size());
+        System.out.println("Anzahl der Pfade: " + allPaths.size());
         for(ArrayList<Way> ways : allPaths){
             wayCount += ways.size() +1;
         }
-        System.out.println("WayCount:"+ wayCount);
-//        for( ArrayList<Way> path : allPaths){
-//            System.out.println(path);
-//        }
-
-        /*
-        new end
-         */
-
-
-
-//
-//        System.out.println("END:"+end);
-//        Point current = start;
-//        int i = 0;
-//        do{
-//            /**
-//             * Wege zur Auswahl
-//             */
-//            //TOP
-//            Path top = checkWay(current,Way.TOP);
-//            //RIGHT
-//            Path right = checkWay(current,Way.RIGHT);
-//            //BOTTOMRIGHT
-//            Path bottomright = checkWay(current,Way.BOTTOMRIGHT);
-//            /**
-//             * Trifft ein weg?
-//             */
-//
-//            Way takeWay = Way.TOP;
-//            if(top.isBest()){
-//                takeWay = Way.TOP;
-//
-//            }else if(right.isBest()){
-//                takeWay = Way.RIGHT;
-//
-//            }else if(bottomright.isBest()){
-//                takeWay = Way.BOTTOMRIGHT;
-//
-//            }else if(top.isPossible()){
-//                takeWay = Way.TOP;
-//            }else if(right.isPossible()){
-//                takeWay = Way.RIGHT;
-//            }else if(bottomright.isPossible()){
-//                takeWay = Way.BOTTOMRIGHT;
-//            }
-//
-//            switch (takeWay){
-//                case TOP:
-//                    current.y = current.y +1;
-//                    System.out.println("TOP");
-//                    break;
-//                case RIGHT:
-//                    current.x = current.x +1;
-//                    System.out.println("RIGHT");
-//                    break;
-//                case BOTTOMRIGHT:
-//                    current.x = current.x +1;
-//                    current.y = current.y -1;
-//                    System.out.println("BOTTOMRIGHT");
-//                    break;
-//            }
-//
-//
-//            System.out.println("Try:"+i+" Point:"+current.toString().substring(14));
-//            i++;
-//
-//            if(current.x == end.x && current.y >= end.y/2) break;
-//        }while ((current.x != end.x || current.y != end.y) && i <= trys);
-//        System.out.println("END LOOP:"+current.toString().substring(14));
-////        }while ((false) && i <= trys); || i <= trys
+        System.out.println("PathNodes:"+ wayCount);
 
     }
 
