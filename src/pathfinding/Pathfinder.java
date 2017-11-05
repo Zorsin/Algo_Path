@@ -15,6 +15,7 @@ public class Pathfinder {
     private Point start;
     private Point end;
     private ArrayList<ArrayList<Way>> allPaths = new ArrayList<>();
+    private int wayCount = 0;
 
     public ArrayList<ArrayList<Way>> getAllPaths() {
         return allPaths;
@@ -37,10 +38,16 @@ public class Pathfinder {
 
         Point current = start;
         ArrayList<Way> possibleDirections = getAllpossibleDirections(current, Way.LEFT);
+
         for(Way direction : possibleDirections){
             goTo(current, direction, new ArrayList<Way>());
         }
+
         System.out.println(allPaths.size());
+        for(ArrayList<Way> ways : allPaths){
+            wayCount += ways.size() +1;
+        }
+        System.out.println("WayCount:"+ wayCount);
 //        for( ArrayList<Way> path : allPaths){
 //            System.out.println(path);
 //        }

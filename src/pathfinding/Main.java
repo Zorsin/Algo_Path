@@ -24,7 +24,7 @@ public class Main extends Application {
 
     public static void main(String[] args) {
 
-        n = 7;
+        n = 5;
         Point start = new Point(0,0);
         Point end = new Point (n,0);
 
@@ -36,7 +36,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-
+        int wayCount = 0;
         Canvas canvas;
         GraphicsContext c;
         Scene scene;
@@ -59,13 +59,14 @@ public class Main extends Application {
 
         double startX = 20;
         double startY = 20;
-        double arrowLength = 4;
+        double arrowLength = 16;
         int drawsPerLine = (int) (canvas.getWidth()/((n)*arrowLength+arrowLength))-2;
         int currentIndex = 1;
         System.out.println("drawsPerLine: " + drawsPerLine);
         Color background = Color.WHITE;
         c.setFill(background);
         Color arrowColor = Color.BLACK;
+        Color dotColor = Color.BLUE;
 
         // loop this
 
@@ -103,6 +104,10 @@ public class Main extends Application {
                         endY = currentY - arrowLength;
                         break;
                 }
+                c.setFill(dotColor);
+                c.fillOval(endX-2, endY-2, 3, 3);
+                wayCount++;
+                c.setFill(arrowColor);
                 c.strokeLine(currentX, currentY, endX, endY);
                 currentX = endX;
                 currentY = endY;
@@ -112,7 +117,7 @@ public class Main extends Application {
             c.setFill(Color.RED);
             // draw start
             c.fillOval(startX-2, startY+n*arrowLength-2, 3, 3);
-
+            wayCount++;
             // draw end
             c.fillOval(startX+n*arrowLength-2, startY+n*arrowLength-2, 3, 3);
 
@@ -123,7 +128,7 @@ public class Main extends Application {
             startX = 20 + currentIndex*(n+1)*arrowLength;
             currentIndex++;
         }
-
+        System.out.println("Way:"+wayCount);
 
 
     }
