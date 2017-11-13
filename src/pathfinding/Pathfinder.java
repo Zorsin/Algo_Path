@@ -9,7 +9,7 @@ import java.util.ArrayList;
 /**
  * 07.10.2017
  *
- * @author SWirries
+ * @author SWirries MHeiss
  */
 public class Pathfinder {
     private Point start;
@@ -29,40 +29,49 @@ public class Pathfinder {
         this.end = end;
     }
 
+    /**
+     * Startet die Pfadsuche
+     */
     public void findPath(){
-
-
-        /*
-        new
-         */
-
-        Point current = start;
+        Point current = start;//Aktueller Startpunkt
+        //Rueckgabe aller moeglöichen Wege
         ArrayList<Way> possibleDirections = getAllpossibleDirections(current, Way.LEFT);
-
+        //Fuer jede moegliche Richtung
         for(Way direction : possibleDirections){
             goTo(current, direction, new ArrayList<Way>());
         }
-
+        //Ausgabe
         System.out.println("Anzahl der Pfade: " + allPaths.size());
         for(ArrayList<Way> ways : allPaths){
             wayCount += ways.size() +1;
         }
-        System.out.println("PathNodes:"+ wayCount);
+        System.out.println("Anzahl der Nodes:"+ wayCount);
 
     }
 
+    /**
+     * Geht zu von dem Punkt in die Richtung fuegt den Wege dem Pfad hinzu
+     * @param currentPoint Aktueller Punkt
+     * @param direction zugehende Richtung
+     * @param path Liste aller Wege
+     */
     protected void goTo(Point currentPoint, Way direction, ArrayList<Way> path){
 
-        Point newPoint = goDirection(currentPoint, direction);
-        path.add(direction);
-
+        Point newPoint = goDirection(currentPoint, direction);//verschiebt den Punkt in die Richtung
+        path.add(direction);//fuegt Richtung hinzu
+        //Wenn Ziel erreicht wurde
         if(newPoint.getX() == end.getX() && newPoint.getY() == end.getY()){
+            //Pfad der Loesung hinzufuegen
             allPaths.add(path);
 //            System.out.println(allPaths.size());
-        }else if(newPoint.getX() <= end.getX()){
+        }else if(newPoint.getX() <= end.getX()){//Wenn Ende noch nicht ueberschritten wurde
+            //Gibt alle moeglichen Richtungen aus
             ArrayList<Way> possibleDirections = getAllpossibleDirections(newPoint, direction);
+            //Fuer jede Richtung
             for(Way dir : possibleDirections){
+                //cloned den aktuellen Punkt
                 ArrayList<Way> clone = (ArrayList<Way>) path.clone();
+                //geht von dem aktuellen Punkt in die Richtung
                 goTo(newPoint, dir, clone);
             }
             path = null;
@@ -70,6 +79,12 @@ public class Pathfinder {
 
     }
 
+    /**
+     * Verschiebt den Punkt in die Richtung
+     * @param current aktueller Punkt
+     * @param direction zugehende Richtung
+     * @return Punkt in der Richtung
+     */
     protected Point goDirection(Point current, Way direction){
         int y = current.y;
         int x = current.x;
@@ -100,6 +115,12 @@ public class Pathfinder {
 
     }
 
+    /**
+     * Gibt alle Richtungen zurueck, die von dem Punkt moeglich sind
+     * @param p aktueller Punkt
+     * @param direction letzte Richtung
+     * @return alle verfuegbaren Richtungen
+     */
     protected ArrayList<Way> getAllpossibleDirections(Point p, Way direction){
 
         ArrayList<Way> out = new ArrayList<>();
@@ -146,6 +167,12 @@ public class Pathfinder {
 //        return possible;
 //    }
 
+    /**
+     * Prueft ob der Weg moeglich ist
+     * @param current aktueller Punkt
+     * @param way zugehender Weg
+     * @return wenn Weg moeglich true
+     */
     protected boolean checkWay(Point current, Way way){
         boolean possible = false;
         switch (way){
@@ -153,13 +180,14 @@ public class Pathfinder {
                 possible = checkTopWay(current);
                 break;
             case LEFT:
-                //
+                //nicht erlaubt
                 break;
             case RIGHT:
                 possible = checkRightWay(current);
                 break;
             case BOTTOM:
                 //possible = checkBottomWay(current);
+                //nicht erlaubt
                 break;
             case TOPLEFT:
                 possible = checkTopLeftWay(current);
@@ -168,7 +196,7 @@ public class Pathfinder {
                 possible = checkTopRightWay(current);
                 break;
             case BOTTOMLEFT:
-                //
+                //nicht erlaubt
                 break;
             case BOTTOMRIGHT:
                 possible = checkBottomRightWay(current);
@@ -178,6 +206,11 @@ public class Pathfinder {
         return possible;
     }
 
+    /**
+     * Prüft den Weg nach Oben
+     * @param current aktueller Punkt
+     * @return wenn moeglich true
+     */
     protected boolean checkTopWay(Point current){
         boolean possible = false;
         //Nach oben
@@ -195,6 +228,11 @@ public class Pathfinder {
         return possible;
     }
 
+    /**
+     * Prueft den Weg nach Oben-Rechts
+     * @param current aktueller Punkt
+     * @return wenn moeglich true
+     */
     protected boolean checkTopRightWay(Point current){
         boolean possible = false;
         //Nach oben rechts
@@ -215,6 +253,11 @@ public class Pathfinder {
         return possible;
     }
 
+    /**
+     * Prueft den Weg nach Rechts
+     * @param current aktueller Punkt
+     * @return wenn moeglich true
+     */
     protected boolean checkRightWay(Point current){
         boolean possible = false;
         //Nach oben rechts
@@ -232,6 +275,11 @@ public class Pathfinder {
         return possible;
     }
 
+    /**
+     * Prueft den Weg nach Unten-Rechts
+     * @param current akuteller Punkt
+     * @return wenn moeglich true
+     */
     protected boolean checkBottomRightWay(Point current){
         boolean possible = false;
         //Nach oben rechts
@@ -239,10 +287,14 @@ public class Pathfinder {
         if((top.y <= end.x && top.x <= end.x) && (top.y >= 0 && top.x >= 0))
             possible = true;
 
-
         return possible;
     }
 
+    /**
+     * Prueft den Weg nach Oben-Links
+     * @param current aktuller Punkt
+     * @return wenn moeglich true
+     */
     protected boolean checkTopLeftWay(Point current){
         boolean possible = false;
         //Nach oben rechts
@@ -256,10 +308,21 @@ public class Pathfinder {
         return possible;
     }
 
+    /**
+     * Prueft den Weg nach Unten
+     * @param current aktueller Punkt
+     * @return wenn moeglich true
+     * Ist aber nicht erlaubt daher immer false
+     */
     protected boolean checkBottomWay(Point current){
         return false;
     }
 
+    /**
+     * Prueft ob der Punkt das Ende ist
+     * @param next zupruefender Punkt
+     * @return wenn Punkt gleich Endpunkt true
+     */
     protected boolean checkMeet(Point next){
         if(next.x == end.x && next.y == end.y)
             return true;

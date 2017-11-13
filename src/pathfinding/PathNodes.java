@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 /**
- * @author Micha Heiß
+ * @author MHeiss SWirries
  */
 public class PathNodes {
 

@@ -3,7 +3,7 @@ package permutation;
 import java.util.ArrayList;
 
 /**
- * @author Micha Heiß
+ * @author MHeiss SWirries
  */
 class Perm extends Thread {
   private int[] a; // a Arbeitsarray
@@ -28,6 +28,9 @@ class Perm extends Thread {
 
   private void perm(int i) { // permutiere ab Index i
     if (i >= max) {
+      /**
+       * Neue Funktion, prueft ob die Permutation den Anforderungen entspricht
+       */
       if(check())
         put(); // eine Permutation fertig
     } else {
@@ -50,28 +53,27 @@ class Perm extends Thread {
     }
   } // end swap
 
+  /**
+   * Prueft ob die Permutation den Anforderungem mit der Zahlenreihe erfuellt
+   * @return wenn es sich um eine gueltige Permutation handelt
+   */
   private boolean check(){
     boolean out = true;
     for(int i =0,j=1;i<=max;i++,j++) {
       if(j>max) break;
-      int sum = a[i] + a[j];
+      int sum = a[i] + a[j];//berechtung der Summer zweier zahlen
       if (sum % 2 == 0) { // wenn gerade
         // erste Zahl muss größer sein
         if (a[i] < a[j]) {
           out = false;
         }
-      } else {
+      } else {//wenn ungerade
         // erste Zahl muss kleiner sein
         if (a[i] > a[j]) {
           out = false;
         }
       }
     }
-
-//    if(out){
-//      // TODO add
-////      allowed.add()
-//    }
     return out;
   }
 
