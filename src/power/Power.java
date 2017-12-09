@@ -10,7 +10,7 @@ public class Power {
     public static void main(String[] args) {
 
         double x = 2;
-        long n = 1000;
+        long n = 1024;
 
         System.out.println(power(x,n));
         System.out.println(count);
