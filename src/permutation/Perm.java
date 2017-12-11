@@ -5,13 +5,13 @@ import java.util.ArrayList;
 /**
  * @author MHeiss SWirries
  */
-class Perm extends Thread {
+public class Perm extends Thread {
   private int[] a; // a Arbeitsarray
   private int max; // maximaler Index
   private boolean mayread = false; // Kontrolle
   private ArrayList<Integer> allowed = new ArrayList<>();
 
-  Perm(int n) { // Konstruktor
+  public Perm(int n) { // Konstruktor
     a = new int[n]; // Indices: 0 .. n-1
     max = n-1; // Maximaler Index
     for (int i = 1; i <= n; ) {
@@ -26,12 +26,12 @@ class Perm extends Thread {
     put(); // ausliefern
   } // end run
 
-  private void perm(int i) { // permutiere ab Index i
+  public void perm(int i) { // permutiere ab Index i
     if (i >= max) {
       /**
        * Neue Funktion, prueft ob die Permutation den Anforderungen entspricht
        */
-      if(check())
+//      if(check())
         put(); // eine Permutation fertig
     } else {
       for (int j = i; j <= max; j++) { // jedes nach Vorne
@@ -77,7 +77,7 @@ class Perm extends Thread {
     return out;
   }
 
-  synchronized int[] getNext() { // liefert naechste Permutation
+  public synchronized int[] getNext() { // liefert naechste Permutation
     mayread = false; // a darf geaendert werden
     notify(); // wecke anderen Thread
     try {
